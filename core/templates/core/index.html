@@ -1,0 +1,11 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <h1>CollabQ</h1>
+    <h3>Hottest questions</h3>
+    <ul>
+        {% for question in questions %}
+            <li>{{ question.text }}&nbsp;<a href="{% url 'question' question.pk %}">See answer</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

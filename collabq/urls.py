@@ -16,6 +16,10 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from core import views
 urlpatterns = [
+    url(r'^$', views.Index.as_view(), name='index'),
+    url(r'^q/(?P<pk>[-\w]+)$', views.QuestionView.as_view(), name='question'),
+    url(r'^q/(?P<pk>[-\w]+)/edit$', views.EditAnswerView.as_view(), name='edit_answer'),
     url(r'^admin/', admin.site.urls),
 ]

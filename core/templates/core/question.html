@@ -1,0 +1,11 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <h1>CollabQ</h1>
+    <h2><strong>Q: </strong>{{ object.text }}</h2>
+    <hr />
+    <p><strong>A: </strong>{{ object.answer.text }}</p>
+    <div style="text-align: right;">
+        <a href="{% url 'edit_answer' object.answer.pk %}">Edit answer</a>
+    </div>
+{% endblock %}
