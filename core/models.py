@@ -32,14 +32,19 @@ class Answer(BaseModel):
         return "Answer for {}".format(self.question)
 
     def save(self, *args, **kwargs):
-        super(Answer, self).save(*args, **kwargs)
         self._capture_history()
+        super(Answer, self).save(*args, **kwargs)
 
     def _capture_history(self):
-        previous_answer = self.answerhistory_set.first()
-        previous_text = previous_answer.text if previous_answer else None
-        if previous_text != self.text:
-            AnswerHistory.objects.create(
-                text=self.text,
-                answer=self,
-            )
+        try:
+            previous_self = Answer.objects.get(pk=self.pk)
+        except Answer.DoesNotExist:
+            pass
+        else:
+            previous_answer = self.answerhistory_set.latest('created')
+            previous_answer_text = previous_answer.text if previous_answer else None
+            if previous_answer_text != previous_self.text:
+                AnswerHistory.objects.create(
+                    text=previous_self.text,
+                    answer=self,
+                )

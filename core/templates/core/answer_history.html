@@ -4,13 +4,7 @@
     <h1>CollabQ</h1>
     <h2><strong>Q: </strong>{{ object.question.text }}</h2>
     <hr />
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Update" />
-    </form>
-    <h3>Latest diff:</h3>
-    <pre>{{ latest_diff|linebreaksbr }}</pre>
+    <p><strong>Current answer: </strong>{{ object.text }}</p>
     <h3>Previous Answers:</h3>
     <ul>
         {% for answer in object.answerhistory_set.all %}

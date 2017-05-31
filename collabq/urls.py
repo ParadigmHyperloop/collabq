@@ -20,6 +20,7 @@ from core import views
 urlpatterns = [
     url(r'^$', views.Index.as_view(), name='index'),
     url(r'^q/(?P<pk>[-\w]+)$', views.QuestionView.as_view(), name='question'),
-    url(r'^q/(?P<pk>[-\w]+)/edit$', views.EditAnswerView.as_view(), name='edit_answer'),
+    url(r'^a/(?P<pk>[-\w]+)/edit$', views.EditAnswerView.as_view(), name='edit_answer'),
+    url(r'^a/(?P<pk>[-\w]+)/history', views.AnswerHistoryView.as_view(), name='answer_history'),
     url(r'^admin/', admin.site.urls),
 ]
